@@ -1,9 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('type', () => {
+  render(<textarea />)
+
+  userEvent.type(screen.getByRole('textbox'), 'Hello,{enter}World!')
+  expect(screen.getByRole('textbox')).toHaveValue('Hello,\nWorld!')
 });
